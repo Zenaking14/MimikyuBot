@@ -12,6 +12,7 @@ module.exports = {
 		await interaction.deferReply()
 		const pokemon = interaction.options.getString('pokemon')
 
+        //declarations
         const pokeData = await getPokemon(pokemon)
         const { name, sprites, stats, abilities, types, id } = pokeData
         var statsContent = ''
