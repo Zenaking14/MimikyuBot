@@ -12,7 +12,6 @@ module.exports = {
 		await interaction.deferReply()
 		const pokemon = interaction.options.getString('pokemon')
 
-        //declarations
         const pokeData = await getPokemon(pokemon)
         const { name, sprites, stats, abilities, types, id } = pokeData
         var statsContent = ''
@@ -20,13 +19,9 @@ module.exports = {
         var typesContent = ''
         
         const embed = new MessageEmbed()
-            embed.setThumbnail(`${sprites.front_shiny}`)
-            embed.setTitle(`${name} #${id}`)
-			embed.setColor('#893EB2')
             types.forEach(type => {
                 typesContent += (type.type.name + ' ')
             })
-            embed.addField('Type:', typesContent)
             abilities.forEach(ability => {
                 if (ability.is_hidden == true) {
                     abilitiesContent += ('__' + ability.ability.name + '__')
@@ -34,11 +29,17 @@ module.exports = {
                     abilitiesContent += (ability.ability.name + '\n')
                 }
             })
-            embed.addField('Abilities:', abilitiesContent)
 			stats.forEach(stat => {
                 statsContent += (stat.stat.name + ': ' + stat.base_stat.toString() + '\n')
             })
-            embed.addField('Base Stats:', statsContent)
+            embed.setThumbnail(`${sprites.front_shiny}`)
+            embed.setTitle(`${name} #${id}`)
+			embed.setColor('#893EB2')
+            embed.addFields(
+                { name: 'Type:', value: typesContent },
+                { name: 'Abilities:', value: abilitiesContent },
+                { name: 'Base Stats:', value: statsContent }
+            )
 		interaction.editReply({ embeds: [embed] })
 	},
 };
