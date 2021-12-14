@@ -10,18 +10,21 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.deferReply()
 		const item = interaction.options.getString('item')
-
-        const itemData = await getItem(item)
-        const { name, sprites, category, effect_entries } = itemData
-        
-        const embed = new MessageEmbed()
-            embed.setThumbnail(`${sprites.default}`)
-            embed.setTitle(`${name}`)
-			embed.setColor('#893EB2')
-            embed.addFields(
-                { name: 'Category:', value: `${category.name}` },
-                { name: 'Effect:', value: `${effect_entries[0].short_effect}` },
-            )
-		interaction.editReply({ embeds: [embed] })
+        try {
+			const itemData = await getItem(item)
+			const { name, sprites, category, effect_entries } = itemData
+			
+			const embed = new MessageEmbed()
+				embed.setThumbnail(`${sprites.default}`)
+				embed.setTitle(`${name}`)
+				embed.setColor('#893EB2')
+				embed.addFields(
+					{ name: 'Category:', value: `${category.name}` },
+					{ name: 'Effect:', value: `${effect_entries[0].short_effect}` },
+				)
+			interaction.editReply({ embeds: [embed] })
+		} catch (error) {
+			interaction.editReply('This item does not exist!')
+		}
 	},
 };
