@@ -16,6 +16,7 @@ module.exports = {
             const { name, sprites, stats, abilities, types, id, species } = pokeData
             const pokeSpeciesData = await getPokeSpecies(`${species.name}`)
             const { capture_rate, evolution_chain } = pokeSpeciesData
+            var spritesContent = ''
             var statsContent = ''
             var abilitiesContent = ''
             var typesContent = ''
@@ -31,6 +32,9 @@ module.exports = {
             const { chain } = evoData
         
             const embed = new MessageEmbed()
+                if (sprites.front_shiny != null) {
+                    spritesContent += sprites.front_shiny
+                }
                 evoContent += chain.species.name + '\n'
                 chain.evolves_to.forEach(evolution => {
                     evoContent += evolution.species.name + '\n'
@@ -127,7 +131,7 @@ module.exports = {
 			    stats.forEach(stat => {
                     statsContent += (stat.stat.name + ': ' + stat.base_stat.toString() + '\n')
                 })
-                embed.setThumbnail(`${sprites.front_shiny}`)
+                embed.setThumbnail(spritesContent)
                 embed.setTitle(`${name} #${id}`)
 			    embed.setColor('#893EB2')
                 embed.addFields(
@@ -140,7 +144,6 @@ module.exports = {
                 )
 		    interaction.editReply({ embeds: [embed] })
         } catch (error) {
-            console.log(error)
             interaction.editReply('This pokemon does not exist!')
         }
 	},
