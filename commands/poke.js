@@ -13,14 +13,14 @@ module.exports = {
 		const pokemon = interaction.options.getString('pokemon')
         try {
             const pokeData = await getPokemon(pokemon)
-            const pokeSpeciesData = await getPokeSpecies(pokemon)
-            const { name, sprites, stats, abilities, types, id } = pokeData
+            const { name, sprites, stats, abilities, types, id, species } = pokeData
+            const pokeSpeciesData = await getPokeSpecies(`${species.name}`)
             const { capture_rate, evolution_chain } = pokeSpeciesData
             var statsContent = ''
             var abilitiesContent = ''
             var typesContent = ''
             var evoContent = ''
-            var evoDetails = '- earliest stage\n'
+            var evoDetails = 'earliest stage\n'
             evo_chain_url = evolution_chain.url
 
             async function getEvoChain() {

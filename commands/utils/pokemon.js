@@ -7,8 +7,8 @@ async function getPokemon(pokemon) {
     return await response.json()
 }
 
-async function getPokeSpecies(pokemon) {
-    let response2 = await fetch(`${poke_species_url}/${pokemon}`)
+async function getPokeSpecies(name) {
+    let response2 = await fetch(`${poke_species_url}/${name}`)
     return await response2.json()
 }
 
