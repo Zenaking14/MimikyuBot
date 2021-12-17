@@ -12,4 +12,9 @@ async function getPokeSpecies(name) {
     return await response2.json()
 }
 
-module.exports = { getPokemon, getPokeSpecies }
+async function getPokeLocation(pokemon) {
+    let response3 = await fetch(`${base_url}/${pokemon}/encounters`)
+    return await response3.json()
+}
+
+module.exports = { getPokemon, getPokeSpecies, getPokeLocation }
