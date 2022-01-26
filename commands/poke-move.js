@@ -13,12 +13,12 @@ module.exports = {
         try {
 			const moveData = await getMove(move)
 			const { id, name, accuracy, effect_chance, pp, priority, power, damage_class, effect_entries, type } = moveData
-			var effectContent = ''
-            var powerContent = ''
-            var accuracyContent = ''
-            var damageContent = ''
-            var ppContent = ''
-            var entriesContent = ''
+			var effectContent = '\n'
+            var powerContent = '\n'
+            var accuracyContent = '\n'
+            var damageContent = '\n'
+            var ppContent = '\n'
+            var entriesContent = '\n'
 
 			const embed = new MessageEmbed()
                 if(effect_chance != null) {
@@ -54,14 +54,14 @@ module.exports = {
 				embed.setTitle(`${name} #${id}`)
 				embed.setColor('#893EB2')
 				embed.addFields(
-                    { name: 'Type:', value: `${type.name}` },
-					{ name: 'Power:', value: powerContent, inline: true },
-                    { name: 'Accuracy:', value: accuracyContent, inline: true},
-                    { name: 'PP:', value: ppContent, inline: true },
-                    { name: 'Effect Chance:', value: effectContent },
-                    { name: 'Damage Type:', value: damageContent, inline: true },
-                    { name: 'Priority:', value: `${priority.toString()}`, inline: true },
-					{ name: 'Effect:', value: entriesContent }
+                    { name: 'Type:', value: '```' + `${type.name}` + '```' },
+					{ name: 'Power:', value: '```' + powerContent + '```', inline: true },
+                    { name: 'Accuracy:', value: '```' + accuracyContent + '```', inline: true},
+                    { name: 'PP:', value: '```' + ppContent + '```', inline: true },
+                    { name: 'Effect Chance:', value: '```' + effectContent + '```' },
+                    { name: 'Damage Type:', value: '```' + damageContent + '```', inline: true },
+                    { name: 'Priority:', value: '```' + `${priority.toString()}` + '```', inline: true },
+					{ name: 'Effect:', value: '```' + entriesContent + '```' }
 				)
 			interaction.editReply({ embeds: [embed] })
 		} catch (error) {

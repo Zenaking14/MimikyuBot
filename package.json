@@ -1,5 +1,5 @@
 {
-  "name": "pokebot",
+  "name": "mimikyubot",
   "version": "1.0.0",
   "description": "Discord bot used to display pokemon info",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zenaking14/PokeBot.git"
+    "url": "git+https://github.com/Zenaking14/MimikyuBot.git"
   },
   "author": "Zenaking",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Zenaking14/PokeBot/issues"
+    "url": "https://github.com/Zenaking14/MimikyuBot/issues"
   },
-  "homepage": "https://github.com/Zenaking14/PokeBot#readme",
+  "homepage": "https://github.com/Zenaking14/MimikyuBot#readme",
   "dependencies": {
     "@discordjs/builders": "^0.9.0",
     "@discordjs/rest": "^0.1.0-canary.0",
@@ -23,9 +23,12 @@
     "discord": "^0.8.2",
     "discord-api-types": "^0.25.2",
     "discord.js": "^13.3.1",
+    "forever": "^4.0.2",
     "node-fetch": "^2.6.6",
     "nodemon": "^2.0.15",
-    "pokedex-promise-v2": "^4.0.0",
     "prettier": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.0"
   }
 }

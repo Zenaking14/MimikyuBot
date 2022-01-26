@@ -18,7 +18,7 @@ module.exports = {
             const embed = new MessageEmbed()
                 pokemon.forEach(poke => {
                     if (poke.is_hidden == true) {
-                        pokeContent += ('__' + poke.pokemon.name + '__\n')
+                        pokeContent += (poke.pokemon.name + '- HA' + '\n')
                     } else {
                         pokeContent += (poke.pokemon.name + '\n')
                     }
@@ -26,8 +26,8 @@ module.exports = {
                 embed.setTitle(`${name}`)
                 embed.setColor('#893EB2')
                 embed.addFields(
-                    { name: 'Effect:', value: `${effect_entries[1].effect}` },
-                    { name: 'Pokemon with ' + `${name}` + ':', value: pokeContent }
+                    { name: 'Effect:', value: '```' + `${effect_entries[1].effect}` + '```' },
+                    { name: 'Pokemon with ' + `${name}` + ':', value: '```' + pokeContent + '```' }
                 )
             interaction.editReply({ embeds: [embed] })
         } catch (error) {

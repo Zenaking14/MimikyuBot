@@ -18,8 +18,8 @@ module.exports = {
 				embed.setTitle(`${name} #${id}`)
 				embed.setColor('#893EB2')
 				embed.addFields(
-					{ name: 'Increases:', value: `${increased_stat.name}` },
-					{ name: 'Decreases:', value: `${decreased_stat.name}` },
+					{ name: 'Increases:', value: '```' + `${increased_stat.name}` + '```' },
+					{ name: 'Decreases:', value: '```' + `${decreased_stat.name}` + '```' },
 				)
 			interaction.editReply({ embeds: [embed] })
 		} catch (error) {

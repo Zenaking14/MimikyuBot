@@ -19,8 +19,8 @@ module.exports = {
 				embed.setTitle(`${name}`)
 				embed.setColor('#893EB2')
 				embed.addFields(
-					{ name: 'Category:', value: `${category.name}` },
-					{ name: 'Effect:', value: `${effect_entries[0].short_effect}` },
+					{ name: 'Category:', value: '```' + `${category.name}` + '```' },
+					{ name: 'Effect:', value: '```' + `${effect_entries[0].short_effect}` + '```' },
 				)
 			interaction.editReply({ embeds: [embed] })
 		} catch (error) {

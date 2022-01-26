@@ -16,11 +16,11 @@ module.exports = {
             const { name, sprites, stats, abilities, types, id, species } = pokeData
             const pokeSpeciesData = await getPokeSpecies(`${species.name}`)
             const { capture_rate, evolution_chain } = pokeSpeciesData
-            var spritesContent = ''
-            var statsContent = ''
-            var abilitiesContent = ''
-            var typesContent = ''
-            var evoContent = ''
+            var spritesContent = '\n'
+            var statsContent = '\n'
+            var abilitiesContent = '\n'
+            var typesContent = '\n'
+            var evoContent = '\n'
             var evoDetails = 'earliest stage\n'
             evo_chain_url = evolution_chain.url
 
@@ -34,10 +34,12 @@ module.exports = {
             const embed = new MessageEmbed()
                 if (sprites.front_shiny != null) {
                     spritesContent += sprites.front_shiny
+                } else {
+                    spritesContent += sprites.front_default
                 }
                 evoContent += chain.species.name + '\n'
                 chain.evolves_to.forEach(evolution => {
-                    evoContent += evolution.species.name + '\n'
+                    evoContent += evolution.species.name += '\n'
                     evolution.evolution_details.forEach(detail => {
                         evoDetails += detail.trigger.name + ' - '
                         if (detail.gender != null) {
@@ -123,7 +125,7 @@ module.exports = {
                 })
                 abilities.forEach(ability => {
                     if (ability.is_hidden == true) {
-                        abilitiesContent += ('__' + ability.ability.name + '__')
+                        abilitiesContent += (ability.ability.name + ' - HA')
                     } else {
                         abilitiesContent += (ability.ability.name + '\n')
                     }
@@ -135,12 +137,12 @@ module.exports = {
                 embed.setTitle(`${name} #${id}`)
 			    embed.setColor('#893EB2')
                 embed.addFields(
-                    { name: 'Type:', value: typesContent, inline: true },
-                    { name: 'Catch Rate:', value: `${capture_rate.toString()}`, inline: true },
-                    { name: 'Abilities:', value: abilitiesContent },
-                    { name: 'Base Stats:', value: statsContent, inline: true },
-                    { name: 'Species:', value: evoContent, inline: true },
-                    { name: 'Evo Method:', value: evoDetails, inline: true }
+                    { name: 'Type:', value: '```' + typesContent + '```', inline: true },
+                    { name: 'Catch Rate:', value: '```' + `${capture_rate.toString()}` + '```', inline: true },
+                    { name: 'Abilities:', value: '```' + abilitiesContent + '```' },
+                    { name: 'Species:', value: '```' + evoContent + '```', inline: true },
+                    { name: 'Evo Method:', value: '```' + evoDetails + '```', inline: true },
+                    { name: 'Base Stats:', value: '```' + statsContent + '```' }
                 )
 		    interaction.editReply({ embeds: [embed] })
         } catch (error) {
