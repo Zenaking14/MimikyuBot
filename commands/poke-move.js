@@ -20,37 +20,38 @@ module.exports = {
             var ppContent = '\n'
             var entriesContent = '\n'
 
+            if(effect_chance != null) {
+                effectContent += effect_chance.toString()
+            } else {
+                effectContent += 'none'
+            }
+            if(power != null) {
+                powerContent += power.toString()
+            } else {
+                powerContent += 'none'
+            }
+            if(accuracy != null) {
+                accuracyContent += accuracy.toString()
+            } else {
+                accuracyContent += 'none'
+            }
+            if(damage_class != null) {
+                damageContent += damage_class.name
+            } else {
+                damageContent += 'none'
+            }
+            if(pp != null) {
+                ppContent += pp.toString()
+            } else {
+                ppContent += 'none'
+            }
+            if(effect_entries.length != 0) {
+                entriesContent += effect_entries[0].short_effect.replace('$effect_chance', effect_chance.toString())
+            } else {
+                entriesContent += 'none'
+            }
+
 			const embed = new MessageEmbed()
-                if(effect_chance != null) {
-                    effectContent += effect_chance.toString()
-                } else {
-                    effectContent += 'none'
-                }
-                if(power != null) {
-                    powerContent += power.toString()
-                } else {
-                    powerContent += 'none'
-                }
-                if(accuracy != null) {
-                    accuracyContent += accuracy.toString()
-                } else {
-                    accuracyContent += 'none'
-                }
-                if(damage_class != null) {
-                    damageContent += damage_class.name
-                } else {
-                    damageContent += 'none'
-                }
-                if(pp != null) {
-                    ppContent += pp.toString()
-                } else {
-                    ppContent += 'none'
-                }
-                if(effect_entries.length != 0) {
-                    entriesContent += effect_entries[0].short_effect
-                } else {
-                    entriesContent += 'none'
-                }
 				embed.setTitle(`${name} #${id}`)
 				embed.setColor('#893EB2')
 				embed.addFields(
