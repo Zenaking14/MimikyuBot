@@ -14,15 +14,16 @@ module.exports = {
             const abilityData = await getAbility(ability)
             const { name, effect_entries, pokemon } = abilityData
             var pokeContent = ''
+
+            pokemon.forEach(poke => {
+                if (poke.is_hidden == true) {
+                    pokeContent += (poke.pokemon.name + '- HA' + '\n')
+                } else {
+                    pokeContent += (poke.pokemon.name + '\n')
+                }
+            })
             
             const embed = new MessageEmbed()
-                pokemon.forEach(poke => {
-                    if (poke.is_hidden == true) {
-                        pokeContent += (poke.pokemon.name + '- HA' + '\n')
-                    } else {
-                        pokeContent += (poke.pokemon.name + '\n')
-                    }
-                })
                 embed.setTitle(`${name}`)
                 embed.setColor('#893EB2')
                 embed.addFields(

@@ -12,7 +12,7 @@ module.exports = {
 		const move = interaction.options.getString('move')
         try {
 			const moveData = await getMove(move)
-			const { id, name, accuracy, effect_chance, pp, priority, power, damage_class, effect_entries, type } = moveData
+			const { id, name, accuracy, effect_chance, pp, priority, power, damage_class, effect_entries, type, target } = moveData
 			var effectContent = '\n'
             var powerContent = '\n'
             var accuracyContent = '\n'
@@ -46,7 +46,11 @@ module.exports = {
                 ppContent += 'none'
             }
             if(effect_entries.length != 0) {
-                entriesContent += effect_entries[0].short_effect.replace('$effect_chance', effect_chance.toString())
+                if (effect_chance != null) {
+                    entriesContent += effect_entries[0].short_effect.replace('$effect_chance', effect_chance.toString())
+                } else {
+                    entriesContent += effect_entries[0].short_effect
+                }
             } else {
                 entriesContent += 'none'
             }
@@ -59,9 +63,10 @@ module.exports = {
 					{ name: 'Power:', value: '```' + powerContent + '```', inline: true },
                     { name: 'Accuracy:', value: '```' + accuracyContent + '```', inline: true},
                     { name: 'PP:', value: '```' + ppContent + '```', inline: true },
-                    { name: 'Effect Chance:', value: '```' + effectContent + '```' },
-                    { name: 'Damage Type:', value: '```' + damageContent + '```', inline: true },
+                    { name: 'Effect Chance:', value: '```' + effectContent + '```', inline: true},
                     { name: 'Priority:', value: '```' + `${priority.toString()}` + '```', inline: true },
+                    { name: 'Damage Type:', value: '```' + damageContent + '```' },
+                    { name: 'Target:', value: '```' + `${target.name}` + '```', inline: true },
 					{ name: 'Effect:', value: '```' + entriesContent + '```' }
 				)
 			interaction.editReply({ embeds: [embed] })

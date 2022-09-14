@@ -28,14 +28,13 @@ module.exports = {
 
             pokeLocationData.forEach(location => {
                 location.version_details.forEach(encounter => {
-                    versionNameContent += ' ' //necessary for some fucking reason???
                     if (game == encounter.version.name) {
                         versionNameContent += '\n' + 'Area: ' + location.location_area.name + '\n'
                         encounter.encounter_details.forEach(method => {
                             if (method.condition_values[0] != undefined && method.condition_values[0] != null) {
-                                versionNameContent += 'Method: ' + method.method.name + ', Chance: ' + method.chance.toString() + ', Conditions: ' + method.condition_values[0].name + '\n'
+                                versionNameContent += 'Method: ' + method.method.name + ', Chance: ' + method.chance.toString() + ', Conditions: ' + method.condition_values[0].name + ' \n'
                             } else {
-                                versionNameContent += 'Method: ' + method.method.name + ', Chance:' + method.chance.toString() + '\n'
+                                versionNameContent += 'Method: ' + method.method.name + ', Chance:' + method.chance.toString() + ' \n'
                             }
                         })
                     }
@@ -49,9 +48,9 @@ module.exports = {
             embed.setTitle(`${name} #${id}`)
 			embed.setColor('#893EB2')
 
-            var VNContent = versionNameContent.substring(0, 3500)
-            for (var i = 3500; i > 0; i -= 1) {
-                if (VNContent.charAt(i) === '\n' && VNContent.charAt(i + 1) === '\n') {
+            var VNContent = versionNameContent.substring(0, 3800)
+            for (var i = 3800; i > 0; i -= 1) {
+                if (VNContent.charAt(i) === ' ' && VNContent.charAt(i + 1) === '\n') {
                     var embedStart = i
                     VNContent = versionNameContent.substring(0, i)
                     break
@@ -60,10 +59,10 @@ module.exports = {
             embed.setDescription('```' + VNContent + '```')
             await interaction.editReply({ embeds: [embed] })
 
-            var VNContent2 = versionNameContent.substring(embedStart, 7000)
-            if (versionNameContent.length >= 3500) {
-                for (var i = 7000; i > 3500; i -= 1) {
-                    if (VNContent2.charAt(i) === '\n' && VNContent2.charAt(i + 1) === '\n') {
+            var VNContent2 = versionNameContent.substring(embedStart, 7600)
+            if (versionNameContent.length >= 3800) {
+                for (var i = 7600; i > 3800; i -= 1) {
+                    if (VNContent2.charAt(i) === ' ' && VNContent2.charAt(i + 1) === '\n') {
                         VNContent2 = versionNameContent.substring(embedStart, i)
                         break
                     }
